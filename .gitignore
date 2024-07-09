@@ -1,0 +1,103 @@
+# .NET Core
+bin/
+obj/
+**/*.user
+**/*.vspscc
+.vscode/
+
+# Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+Generated_Code/
+
+# Packages
+*.nupkg
+*.snupkg
+.nuget/
+
+# Entity Framework Core Migrations
+Migrations/
+
+# Build results
+bin/
+obj/
+out/
+
+# Logs
+*.log
+*.tlg
+*.log.1
+logcat
+*.log.backup
+*.log.*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# IDE specific
+.vscode/
+.vscode-test/
+.vs/
+.idea/
+
+# Backup files
+*.bak
+*.swp
+
+# Test results
+TestResults/
+*.coverage
+*.coveragexml
+*.log
+*.trx
+*.userPrefs
+
+# Rider
+.idea/
+*.sln.iml
+
+# Mac
+*.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Coverage
+coverage/
+
+# StyleCop
+StyleCop.Cache
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# JetBrains Rider
+.idea/
+*.sln.iml
