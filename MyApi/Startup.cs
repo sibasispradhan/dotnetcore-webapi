@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using MyApi.BAL.Interfaces;
 using MyApi.BAL.Services;
 using MyApi.DAL;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace MyApi
 {
@@ -27,6 +30,27 @@ namespace MyApi
             // Register DbContext
             // Get connection string from environment variable
             var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            var key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY"));
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+            
+            services.AddScoped<TokenService>();
+
             services.AddDbContext<AppDbContext>(options =>
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
                     .EnableSensitiveDataLogging()
@@ -45,11 +69,9 @@ namespace MyApi
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

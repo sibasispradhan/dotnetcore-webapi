@@ -1,11 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyApi.BAL.Interfaces;
 using MyApi.DTO;
 
 namespace MyApi.Controllers
-{
-    [Route("api/[controller]")]
-    [ApiController]
+{    
+    [Authorize]
+    [ApiController]      
+    [Route("api/[controller]")] 
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
