@@ -25,7 +25,8 @@ namespace MyApi
             services.AddSwaggerGen();
             
             // Register DbContext
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            // Get connection string from environment variable
+            var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
             services.AddDbContext<AppDbContext>(options =>
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
                     .EnableSensitiveDataLogging()

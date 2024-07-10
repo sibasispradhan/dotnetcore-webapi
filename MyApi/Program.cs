@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using DotNetEnv;
 
 namespace MyApi
 {
@@ -7,6 +8,8 @@ namespace MyApi
     {
         public static void Main(string[] args)
         {
+            // Load environment variables from .env file
+            Env.Load();
             CreateHostBuilder(args).Build().Run();
         }
 

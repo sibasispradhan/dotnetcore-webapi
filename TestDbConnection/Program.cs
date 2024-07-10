@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using DotNetEnv;
 
 namespace TestDbConnection
 {
@@ -21,8 +22,10 @@ namespace TestDbConnection
     {
         static void Main(string[] args)
         {
+            Env.Load();
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseMySql("Server=7hx.h.filess.io;Port=3307;Database=careersdb_government;User=careersdb_government;Password=9bf2f924f0e504f8167f69512fe39ce2868802a9;", 
+            var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            optionsBuilder.UseMySql(connectionString, 
                                     new MySqlServerVersion(new Version(8, 0, 21)));
 
             using (var context = new AppDbContext(optionsBuilder.Options))

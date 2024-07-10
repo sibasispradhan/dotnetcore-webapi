@@ -101,3 +101,6 @@ StyleCop.Cache
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# Environment files
+.env
